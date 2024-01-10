@@ -15,5 +15,7 @@ class Definer(models.Model):
     def __str__(self):
         return 'undefined'
 
+#add an comment to code
 
+modelx = 24
 # Create your models here.
