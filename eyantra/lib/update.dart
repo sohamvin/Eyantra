@@ -222,7 +222,18 @@ class _UpdatePageState extends State<UpdatePage> {
                   String ph = controller6.text.toString();
 
                   Response response = await widget.client.put(
-                            Uri.parse("http://127.0.0.1:8000/api/models/${widget.id}/update/"),
+                          //   Uri.parse("http://127.0.0.1:8000/api/models/${widget.id}/update/"),
+                          //   body: {
+                          //     'N': N,
+                          //     'P': P,
+                          //     'k': k,
+                          //     'temperature': temperature,
+                          //     'humidity': humi,
+                          //     'ph': ph,
+                          //     'rainfall': rain,
+                          //   },
+                          // );
+                          Uri.parse("http://192.168.1.10:8000/api/models/${widget.id}/update/"),
                             body: {
                               'N': N,
                               'P': P,
@@ -233,6 +244,7 @@ class _UpdatePageState extends State<UpdatePage> {
                               'rainfall': rain,
                             },
                           );
+  
 
                           // Check if the request was successful
                           if (response.statusCode == 200) {

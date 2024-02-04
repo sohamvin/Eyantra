@@ -37,7 +37,7 @@ class Note {
     String? temperature,
     String? ph,
     String? rainfall,
-    String? created, // Added the created field to the copyWith method
+    String? created, 
   }) {
     return Note(
       id: id ?? this.id,
@@ -49,21 +49,18 @@ class Note {
       temperature: temperature ?? this.temperature,
       ph: ph ?? this.ph,
       rainfall: rainfall ?? this.rainfall,
-      created: created ?? this.created, // Updated the created field
+      created: created ?? this.created, 
     );
   }
 
   String get formattedDateTime {
-    // Parse the original created string to DateTime
     DateTime dateTime = DateTime.parse(created);
 
-    // Format the date and time string
     String formattedDate =
         'Date: ${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}';
     String formattedTime =
         'Time: ${dateTime.hour.toString().padLeft(2, '0')}.${dateTime.minute.toString().padLeft(2, '0')}';
 
-    // Combine date and time strings
     return '$formattedTime     $formattedDate';
   }
 
@@ -78,7 +75,7 @@ class Note {
       'temperature': temperature,
       'ph': ph,
       'rainfall': rainfall,
-      'created': created, // Added the created field to the toMap method
+      'created': created,
     };
   }
 
@@ -93,7 +90,7 @@ class Note {
       temperature: map['temperature'] as String,
       ph: map['ph'] as String,
       rainfall: map['rainfall'] as String,
-      created: map['created'] as String, // Added the created field to the fromMap method
+      created: map['created'] as String,
     );
   }
 
@@ -120,7 +117,7 @@ class Note {
         other.temperature == temperature &&
         other.ph == ph &&
         other.rainfall == rainfall &&
-        other.created == created; // Added the created field to the operator==
+        other.created == created;
   }
 
   @override

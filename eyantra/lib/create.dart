@@ -192,7 +192,18 @@ class _CreatePageState extends State<CreatePage> {
                   String ph = controller6.text.toString();
 
                   Response response = await widget.client.post(
-                            Uri.parse("http://127.0.0.1:8000/api/models/create/"),
+                          //   Uri.parse("http://127.0.0.1:8000/api/models/create/"),
+                          //   body: {
+                          //     'N': N,
+                          //     'P': P,
+                          //     'k': k,
+                          //     'temperature': temperature,
+                          //     'humidity': humi,
+                          //     'ph': ph,
+                          //     'rainfall': rain,
+                          //   },
+                          // );
+                          Uri.parse("http://192.168.1.10:8000/api/models/create/"),
                             body: {
                               'N': N,
                               'P': P,
@@ -203,6 +214,7 @@ class _CreatePageState extends State<CreatePage> {
                               'rainfall': rain,
                             },
                           );
+                          
 
                           // Check if the request was successful
                           if (response.statusCode == 200) {

@@ -5,7 +5,14 @@ import 'package:http/http.dart' as http;
 import 'create.dart';
 import 'update.dart';
 import 'model.dart';
+import 'blutooth_connectivity.dart' as BluetoothPage;
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+
+import 'screens/bluetooth_off_screen.dart';
+import 'screens/scan_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +23,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,9 +59,11 @@ _retrieveNotes() async {
   try {
     notes = [];
 
-    // Fetching data from the server
-    List response = json.decode(
-      (await http.get(Uri.parse("http://127.0.0.1:8000/api/models/"))).body,
+    // List response = json.decode(
+    //   (await http.get(Uri.parse("http://127.0.0.1:8000/api/models/"))).body,
+    // );
+        List response = json.decode(
+      (await http.get(Uri.parse("http://192.168.1.10:8000/api/models/"))).body,
     );
 
     response.forEach((element) {
@@ -105,8 +113,13 @@ if (9.50 < double.parse(noteData['ph']) || 3.20  > double.parse(noteData['ph']) 
 
 
 
-  void _deleteNote(int id) {
-  client.delete(Uri.parse("http://127.0.0.1:8000/api/models/$id/delete/"));
+  // void _deleteNote(int id) {
+  // client.delete(Uri.parse("http://127.0.0.1:8000/api/models/$id/delete/"));
+  // print("The request to $id");
+  // _retrieveNotes();
+  // }
+    void _deleteNote(int id) {
+  client.delete(Uri.parse("http://192.168.1.10:8000/api/models/$id/delete/"));
   print("The request to $id");
   _retrieveNotes();
   }
@@ -163,17 +176,38 @@ if (9.50 < double.parse(noteData['ph']) || 3.20  > double.parse(noteData['ph']) 
             }
         ),
       ),
-     floatingActionButton: FloatingActionButton(
+    floatingActionButton: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+     FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => CreatePage(client:client)),
+              MaterialPageRoute(
+                builder: (context) => CreatePage(client: client),
+              ),
             );
           },
           tooltip: 'Add Note',
           child: const Icon(Icons.add),
           backgroundColor: Color.fromARGB(255, 89, 19, 240),
         ),
-        // This trailing comma makes auto-formatting nicer for build methods.
+        SizedBox(height: 16),
+        FloatingActionButton(
+         onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => BluetoothPage.FlutterBlueApp(),
+              ),
+            );
+          },
+
+          tooltip: 'Bluetooth Connection',
+          child: const Icon(Icons.bluetooth),
+          backgroundColor: Color.fromARGB(255, 89, 19, 240),
+        ),
+        
+         ],
+    ),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
