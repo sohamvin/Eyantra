@@ -7,10 +7,10 @@ class Note {
   String P;
   String N;
   String k;
-  String humidity;
+  String moisture;
   String temperature;
   String ph;
-  String rainfall;
+  String ec;
   String created;
 
   Note({
@@ -19,10 +19,10 @@ class Note {
     required this.P,
     required this.N,
     required this.k,
-    required this.humidity,
+    required this.moisture,
     required this.temperature,
     required this.ph,
-    required this.rainfall,
+    required this.ec,
     required this.created, // Added the created field to the constructor
   });
 
@@ -33,10 +33,10 @@ class Note {
     String? P,
     String? N,
     String? k,
-    String? humidity,
+    String? moisture,
     String? temperature,
     String? ph,
-    String? rainfall,
+    String? ec,
     String? created, 
   }) {
     return Note(
@@ -45,10 +45,10 @@ class Note {
       P: P ?? this.P,
       N: N ?? this.N,
       k: k ?? this.k,
-      humidity: humidity ?? this.humidity,
+      moisture: moisture ?? this.moisture,
       temperature: temperature ?? this.temperature,
       ph: ph ?? this.ph,
-      rainfall: rainfall ?? this.rainfall,
+      ec: ec ?? this.ec,
       created: created ?? this.created, 
     );
   }
@@ -71,10 +71,10 @@ class Note {
       'P': P,
       'N': N,
       'k': k,
-      'humidity': humidity,
+      'moisture': moisture,
       'temperature': temperature,
       'ph': ph,
-      'rainfall': rainfall,
+      'ec': ec,
       'created': created,
     };
   }
@@ -86,10 +86,10 @@ class Note {
       P: map['P'] as String,
       N: map['N'] as String,
       k: map['k'] as String,
-      humidity: map['humidity'] as String,
+      moisture: map['moisture'] as String,
       temperature: map['temperature'] as String,
       ph: map['ph'] as String,
-      rainfall: map['rainfall'] as String,
+      ec: map['ec'] as String,
       created: map['created'] as String,
     );
   }
@@ -101,7 +101,7 @@ class Note {
 
   @override
   String toString() {
-    return 'Note(id: $id, note: $note, P: $P, N: $N, k: $k, humidity: $humidity, temperature: $temperature, ph: $ph, rainfall: $rainfall, created: $created)';
+    return 'Note(id: $id, note: $note, P: $P, N: $N, k: $k, moisture: $moisture, temperature: $temperature, ph: $ph, ec: $ec, created: $created)';
   }
 
   @override
@@ -113,10 +113,10 @@ class Note {
         other.P == P &&
         other.N == N &&
         other.k == k &&
-        other.humidity == humidity &&
+        other.moisture == moisture &&
         other.temperature == temperature &&
         other.ph == ph &&
-        other.rainfall == rainfall &&
+        other.ec == ec &&
         other.created == created;
   }
 
@@ -127,10 +127,10 @@ class Note {
         P.hashCode ^
         N.hashCode ^
         k.hashCode ^
-        humidity.hashCode ^
+        moisture.hashCode ^
         temperature.hashCode ^
         ph.hashCode ^
-        rainfall.hashCode ^
+        ec.hashCode ^
         created.hashCode; // Added the created field to the hashCode
   }
 }

@@ -1,13 +1,8 @@
-import 'dart:typed_data';
 
-import 'package:eyantra/main.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-import 'package:http/http.dart';
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 import 'screens/bluetooth_off_screen.dart';

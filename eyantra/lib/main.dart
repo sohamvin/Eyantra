@@ -6,13 +6,7 @@ import 'create.dart';
 import 'update.dart';
 import 'model.dart';
 import 'blutooth_connectivity.dart' as BluetoothPage;
-import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-
-import 'screens/bluetooth_off_screen.dart';
-import 'screens/scan_screen.dart';
+import 'MainPage.dart' as MainBlClassic;
 
 void main() {
   runApp(const MyApp());
@@ -62,9 +56,14 @@ _retrieveNotes() async {
     // List response = json.decode(
     //   (await http.get(Uri.parse("http://127.0.0.1:8000/api/models/"))).body,
     // );
-        List response = json.decode(
-      (await http.get(Uri.parse("http://192.168.1.10:8000/api/models/"))).body,
+    //     List response = json.decode(
+    //   (await http.get(Uri.parse("http://192.168.1.10:8000/api/models/"))).body,
+    // );
+     
+             List response = json.decode(
+      (await http.get(Uri.parse("http://192.168.141.75:8000/api/models/"))).body,
     );
+
 
     response.forEach((element) {
   try {
@@ -74,10 +73,10 @@ _retrieveNotes() async {
   'P': element['P'].toString(), 
   'N': element['N'].toString(), 
   'k': element['k'].toString(), 
-  'humidity': element['humidity'].toString(),
+  'moisture': element['moisture'].toString(),
   'temperature': element['temperature'].toString(), 
   'ph': element['ph'].toString(), 
-  'rainfall': element['rainfall'].toString(),
+  'ec': element['ec'].toString(),
   'created': element['created'].toString(),  
 };
 
@@ -119,10 +118,12 @@ if (9.50 < double.parse(noteData['ph']) || 3.20  > double.parse(noteData['ph']) 
   // _retrieveNotes();
   // }
     void _deleteNote(int id) {
-  client.delete(Uri.parse("http://192.168.1.10:8000/api/models/$id/delete/"));
+  // client.delete(Uri.parse("http://192.168.1.10:8000/api/models/$id/delete/"));
+  client.delete(Uri.parse("http://192.168.141.75:8000/api/models/$id/delete/"));
   print("The request to $id");
   _retrieveNotes();
   }
+ 
 
 
   @override
@@ -155,13 +156,12 @@ if (9.50 < double.parse(noteData['ph']) || 3.20  > double.parse(noteData['ph']) 
                 onTap: () {
                     Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => UpdatePage(
-                      client:client,
                       id:notes[index].id,
                       note: notes[index].note,
                       temperature: notes[index].temperature,
-                      humidity: notes[index].humidity,
+                      moisture: notes[index].moisture,
                       ph:notes[index].ph,
-                      rainfall: notes[index].rainfall,
+                      ec: notes[index].ec,
                       N: notes[index].N,
                       P:notes[index].P,
                       k: notes[index].k
@@ -196,7 +196,7 @@ if (9.50 < double.parse(noteData['ph']) || 3.20  > double.parse(noteData['ph']) 
          onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => BluetoothPage.FlutterBlueApp(),
+                builder: (context) => MainBlClassic.MainPage(),
               ),
             );
           },

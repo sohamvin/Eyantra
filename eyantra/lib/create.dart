@@ -17,9 +17,6 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   TextEditingController controller = TextEditingController();
-  TextEditingController controller1 = TextEditingController();
-  TextEditingController controller2 = TextEditingController();
-  TextEditingController controller3 = TextEditingController();
   TextEditingController controller4 = TextEditingController();
   TextEditingController controller5 = TextEditingController();
   TextEditingController controller6 = TextEditingController();
@@ -66,25 +63,6 @@ class _CreatePageState extends State<CreatePage> {
                     ],
                   ),
                 ),
-          Container(
-                  margin: EdgeInsets.all(29.0),
-                  padding: EdgeInsets.all(29.0),
-                  height: 128,
-                  width: 700,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(19.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Enter Nitrogen:"),
-                      TextField(
-                        controller: controller1,
-                      ),
-                    ],
-                  ),
-                ),
            Container(
                   margin: EdgeInsets.all(29.0),
                   padding: EdgeInsets.all(29.0),
@@ -97,45 +75,7 @@ class _CreatePageState extends State<CreatePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Enter Phosphurous:"),
-                      TextField(
-                        controller: controller2,
-                      ),
-                    ],
-                  ),
-                ),
-          Container(
-                  margin: EdgeInsets.all(29.0),
-                  padding: EdgeInsets.all(29.0),
-                   height: 128,
-                  width: 700,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(19.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Enter Potasium:"),
-                      TextField(
-                        controller: controller3,
-                      ),
-                    ],
-                  ),
-                ),
-           Container(
-                  margin: EdgeInsets.all(29.0),
-                  padding: EdgeInsets.all(29.0),
-                   height: 128,
-                  width: 700,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(19.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Enter Humidity:"),
+                      Text("Enter moisture:"),
                       TextField(
                         controller: controller4,
                       ),
@@ -154,7 +94,7 @@ class _CreatePageState extends State<CreatePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Enter Rainfall:"),
+                      Text("Enter electrical conductivity:"),
                       TextField(
                         controller: controller5,
                       ),
@@ -183,12 +123,9 @@ class _CreatePageState extends State<CreatePage> {
          ElevatedButton(
                 onPressed: () async {
                   // Get the text from the TextField
-                  String N = controller1.text.toString();
-                  String P = controller2.text.toString();
-                  String k = controller3.text.toString();
                   String temperature = controller.text.toString();
-                  String humi = controller4.text.toString();
-                  String rain = controller5.text.toString();
+                  String moi = controller4.text.toString();
+                  String ec = controller5.text.toString();
                   String ph = controller6.text.toString();
 
                   Response response = await widget.client.post(
@@ -198,20 +135,19 @@ class _CreatePageState extends State<CreatePage> {
                           //     'P': P,
                           //     'k': k,
                           //     'temperature': temperature,
-                          //     'humidity': humi,
+                          //     'moisture': moi,
                           //     'ph': ph,
-                          //     'rainfall': rain,
+                          //     'ec': ec,
                           //   },
                           // );
-                          Uri.parse("http://192.168.1.10:8000/api/models/create/"),
+                          
+                          // Uri.parse("http://192.168.1.10:8000/api/models/create/"),
+                          Uri.parse("http://192.168.141.75:8000/api/models/create/"),
                             body: {
-                              'N': N,
-                              'P': P,
-                              'k': k,
                               'temperature': temperature,
-                              'humidity': humi,
+                              'moisture': moi,
                               'ph': ph,
-                              'rainfall': rain,
+                              'ec': ec,
                             },
                           );
                           
